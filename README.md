@@ -7,8 +7,10 @@
 
 >  **如果对你有帮助的话请右上角点个star，非常感谢！** 
 
-![JDK](https://img.shields.io/badge/jdk-1.8-green.svg?style=flat-square) [![LICENSE](https://img.shields.io/github/license/gujiniCY/blog.svg?style=flat-square)](https://github.com/gujiniCY/blog/blob/master/LICENSE)   [![star](https://img.shields.io/github/stars/gujiniCY/blog.svg?label=Stars&style=social)](https://github.com/gujiniCY/blog)[![star](https://gitee.com/song_haozhi/blog/badge/star.svg?theme=white)](https://gitee.com/song_haozhi/blog) 
-
+![JDK](https://img.shields.io/badge/jdk-1.8-green.svg?style=flat-square)
+ [![LICENSE](https://img.shields.io/github/license/gujiniCY/blog.svg?style=flat-square)](https://github.com/ttxxly/blog/blob/master/LICENSE)  
+  
+[![star](https://img.shields.io/github/stars/gujiniCY/blog.svg?label=Stars&style=social)](https://github.com/ttxxly/blog)
 ## 使用说明
 1. 下载代码
 `git clone https://github.com/gujiniCY/blog.git`
