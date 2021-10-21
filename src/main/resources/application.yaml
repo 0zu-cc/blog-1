@@ -7,7 +7,7 @@ logging:
         security: DEBUG
         org.thymeleaf: info
     config: classpath:logback-spring.xml
-spring: 
+spring:
   mvc:
     static-path-pattern: /**
   thymeleaf: 
@@ -21,6 +21,11 @@ spring:
          username: root
          password: 12345678
          driver-class-name: com.mysql.jdbc.Driver
+  #文件上传配置
+  servlet:
+    multipart:
+      max-file-size: 10240KB
+      max-request-size: 102400KB
 mybatis: 
   typeAliasesPackage: com.polaris.blog.model.domain
   mapperLocations: classpath:mapper/*/*.xml

@@ -14,8 +14,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * @author : 宋浩志
- * @createDate : 2018年9月10日
+ * @author ylcoder
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
@@ -52,18 +51,4 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		WebMvcConfigurer.super.addResourceHandlers(registry);
 	}
 
-	/**
-	 * 文件上传配置
-	 * 
-	 * @return
-	 */
-	@Bean
-	public MultipartConfigElement multipartConfigElement() {
-		MultipartConfigFactory factory = new MultipartConfigFactory();
-		// 单个文件最大 KB,MB
-		factory.setMaxFileSize("10240KB");
-		/// 设置总上传数据总大小
-		factory.setMaxRequestSize("102400KB");
-		return factory.createMultipartConfig();
-	}
 }
