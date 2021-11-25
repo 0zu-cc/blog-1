@@ -1939,7 +1939,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .footer-meta .footer-container {
     width: 100%;
     max-width: 960px;
-    height: 250px;
+    height: auto;
     margin: 0 auto;
     padding: 0 80px
 }
