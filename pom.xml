@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.polaris.blog</groupId>
@@ -11,7 +11,7 @@
 
 	<name>blog</name>
 	<description>
-	blog,一个为了学习springboot而诞生的博客项目
+		blog,一个为了学习springboot而诞生的博客项目
 	</description>
 
 	<parent>
@@ -33,6 +33,7 @@
 		<ehcache.version>3.6.3</ehcache.version>
 		<MDTool.version>1.2.1</MDTool.version>
 		<rome.version>1.0</rome.version>
+		<docker.image.prefix>docker</docker.image.prefix>
 	</properties>
 
 	<dependencies>
@@ -153,7 +154,6 @@
 	</dependencies>
 
 	<build>
-		<finalName>blog</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -165,6 +165,22 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>1.0.0</version>
+				<configuration>
+					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+					<dockerDirectory>src/main/docker</dockerDirectory>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
 				</configuration>
 			</plugin>
 		</plugins>
