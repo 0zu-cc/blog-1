@@ -25,6 +25,7 @@
 
 目前Nginx 和 mysql 自动安装
 项目jar使用Jenkins、docker配合github hook实现自动构建部署到docker容器中
+自动化构建测试
 
 ### 如果使用又拍云cdn的话请到参数跟随里面设置全程跟随以及开启重定向跟随
 
