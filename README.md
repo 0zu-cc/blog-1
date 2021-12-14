@@ -1,5 +1,5 @@
 
-<h1><a href="https://blog.polaris.com">blog</a></h1>
+<h1><a href="https://blog.yltrcc.com">blog</a></h1>
 
 >  **blog博客系统是我想边学习springboot和thymeleaf编写的一个java博客系统** 
 

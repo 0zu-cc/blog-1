@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.polaris.blog.mapper.generator.TagMapper">
-  <resultMap id="BaseResultMap" type="com.polaris.blog.model.domain.Tag">
+<mapper namespace="com.yltrcc.blog.mapper.generator.TagMapper">
+  <resultMap id="BaseResultMap" type="com.yltrcc.blog.model.domain.Tag">
     <id column="tag_id" jdbcType="INTEGER" property="tagId" />
     <result column="tag_name" jdbcType="VARCHAR" property="tagName" />
     <result column="tag_url" jdbcType="VARCHAR" property="tagUrl" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List">
     tag_id, tag_name, tag_url
   </sql>
-  <select id="selectByExample" parameterType="com.polaris.blog.model.domain.TagExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.yltrcc.blog.model.domain.TagExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -92,19 +92,19 @@
     delete from blog_tag
     where tag_id = #{tagId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.polaris.blog.model.domain.TagExample">
+  <delete id="deleteByExample" parameterType="com.yltrcc.blog.model.domain.TagExample">
     delete from blog_tag
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.polaris.blog.model.domain.Tag">
+  <insert id="insert" parameterType="com.yltrcc.blog.model.domain.Tag">
     insert into blog_tag (tag_id, tag_name, tag_url
       )
     values (#{tagId,jdbcType=INTEGER}, #{tagName,jdbcType=VARCHAR}, #{tagUrl,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.polaris.blog.model.domain.Tag">
+  <insert id="insertSelective" parameterType="com.yltrcc.blog.model.domain.Tag">
     insert into blog_tag
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="tagId != null">
@@ -129,7 +129,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.polaris.blog.model.domain.TagExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.yltrcc.blog.model.domain.TagExample" resultType="java.lang.Long">
     select count(*) from blog_tag
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -161,7 +161,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.polaris.blog.model.domain.Tag">
+  <update id="updateByPrimaryKeySelective" parameterType="com.yltrcc.blog.model.domain.Tag">
     update blog_tag
     <set>
       <if test="tagName != null">
@@ -173,7 +173,7 @@
     </set>
     where tag_id = #{tagId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.polaris.blog.model.domain.Tag">
+  <update id="updateByPrimaryKey" parameterType="com.yltrcc.blog.model.domain.Tag">
     update blog_tag
     set tag_name = #{tagName,jdbcType=VARCHAR},
       tag_url = #{tagUrl,jdbcType=VARCHAR}

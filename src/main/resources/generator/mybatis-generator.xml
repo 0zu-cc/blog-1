@@ -16,7 +16,7 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!--生成Model类存放位置-->
-        <javaModelGenerator targetPackage="com.polaris.blog.model.domain" targetProject="blog/src/main/java">
+        <javaModelGenerator targetPackage="com.yltrcc.blog.model.domain" targetProject="blog/src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
@@ -30,7 +30,7 @@
                 type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
                 type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
         -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.polaris.blog.mapper.generator" targetProject="blog/src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yltrcc.blog.mapper.generator" targetProject="blog/src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!--生成对应表及类名-->

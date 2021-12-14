@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.polaris.blog.mapper.generator.ArticleCategoryMapper">
-  <resultMap id="BaseResultMap" type="com.polaris.blog.model.domain.ArticleCategory">
+<mapper namespace="com.yltrcc.blog.mapper.generator.ArticleCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.yltrcc.blog.model.domain.ArticleCategory">
     <result column="article_id" jdbcType="INTEGER" property="articleId" />
     <result column="category_id" jdbcType="BIGINT" property="categoryId" />
   </resultMap>
@@ -66,7 +66,7 @@
   <sql id="Base_Column_List">
     article_id, category_id
   </sql>
-  <select id="selectByExample" parameterType="com.polaris.blog.model.domain.ArticleCategoryExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.yltrcc.blog.model.domain.ArticleCategoryExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -81,17 +81,17 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.polaris.blog.model.domain.ArticleCategoryExample">
+  <delete id="deleteByExample" parameterType="com.yltrcc.blog.model.domain.ArticleCategoryExample">
     delete from blog_article_category
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.polaris.blog.model.domain.ArticleCategory">
+  <insert id="insert" parameterType="com.yltrcc.blog.model.domain.ArticleCategory">
     insert into blog_article_category (article_id, category_id)
     values (#{articleId,jdbcType=INTEGER}, #{categoryId,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.polaris.blog.model.domain.ArticleCategory">
+  <insert id="insertSelective" parameterType="com.yltrcc.blog.model.domain.ArticleCategory">
     insert into blog_article_category
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="articleId != null">
@@ -110,7 +110,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.polaris.blog.model.domain.ArticleCategoryExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.yltrcc.blog.model.domain.ArticleCategoryExample" resultType="java.lang.Long">
     select count(*) from blog_article_category
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.polaris.blog.mapper.generator.UserMapper">
-  <resultMap id="BaseResultMap" type="com.polaris.blog.model.domain.User">
+<mapper namespace="com.yltrcc.blog.mapper.generator.UserMapper">
+  <resultMap id="BaseResultMap" type="com.yltrcc.blog.model.domain.User">
     <id column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="login_enable" jdbcType="VARCHAR" property="loginEnable" />
     <result column="login_error" jdbcType="INTEGER" property="loginError" />
@@ -75,7 +75,7 @@
     user_id, login_enable, login_error, login_last_time, user_portrait, user_explain, 
     user_display_name, user_email, user_name, user_pwd
   </sql>
-  <select id="selectByExample" parameterType="com.polaris.blog.model.domain.UserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.yltrcc.blog.model.domain.UserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -100,13 +100,13 @@
     delete from blog_user
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.polaris.blog.model.domain.UserExample">
+  <delete id="deleteByExample" parameterType="com.yltrcc.blog.model.domain.UserExample">
     delete from blog_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.polaris.blog.model.domain.User">
+  <insert id="insert" parameterType="com.yltrcc.blog.model.domain.User">
     insert into blog_user (user_id, login_enable, login_error,
       login_last_time, user_portrait, user_explain, 
       user_display_name, user_email, user_name, 
@@ -116,7 +116,7 @@
       #{userDisplayName,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
       #{userPwd,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.polaris.blog.model.domain.User">
+  <insert id="insertSelective" parameterType="com.yltrcc.blog.model.domain.User">
     insert into blog_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -183,7 +183,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.polaris.blog.model.domain.UserExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.yltrcc.blog.model.domain.UserExample" resultType="java.lang.Long">
     select count(*) from blog_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -243,7 +243,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.polaris.blog.model.domain.User">
+  <update id="updateByPrimaryKeySelective" parameterType="com.yltrcc.blog.model.domain.User">
     update blog_user
     <set>
       <if test="loginEnable != null">
@@ -276,7 +276,7 @@
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.polaris.blog.model.domain.User">
+  <update id="updateByPrimaryKey" parameterType="com.yltrcc.blog.model.domain.User">
     update blog_user
     set login_enable = #{loginEnable,jdbcType=VARCHAR},
       login_error = #{loginError,jdbcType=INTEGER},

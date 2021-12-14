@@ -27,7 +27,7 @@ spring:
       max-file-size: 10240KB
       max-request-size: 102400KB
 mybatis: 
-  typeAliasesPackage: com.polaris.blog.model.domain
+  typeAliasesPackage: com.yltrcc.blog.model.domain
   mapperLocations: classpath:mapper/*/*.xml
   configuration:
     map-underscore-to-camel-case: true

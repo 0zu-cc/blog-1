@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
-	namespace="com.polaris.blog.mapper.custom.ArticleMapperCustom">
+	namespace="com.yltrcc.blog.mapper.custom.ArticleMapperCustom">
 	<sql id="whereArticle">
 	<where>1=1
 	<if test="status != null">
@@ -41,7 +41,7 @@
 		ORDER BY article_updatetime DESC,article_newstime DESC
 	</select> -->
 	<select id="findPageArticle"
-            resultType="com.polaris.blog.model.domain.ArticleCustom" parameterType="com.polaris.blog.model.domain.ArticleCustom">
+            resultType="com.yltrcc.blog.model.domain.ArticleCustom" parameterType="com.yltrcc.blog.model.domain.ArticleCustom">
 			SELECT
 			ma.*,
 			GROUP_CONCAT(distinct mc.category_name ) AS categorysName,
@@ -59,7 +59,7 @@
 			ma.id ORDER BY article_updatetime DESC,article_newstime DESC
 	</select>
 	<select id="findAllArticle"
-		resultType="com.polaris.blog.model.domain.ArticleCustom">
+		resultType="com.yltrcc.blog.model.domain.ArticleCustom">
 		SELECT * FROM blog_article a
 		<include refid="whereArticle"></include>
 	</select>
@@ -73,7 +73,7 @@
 	update blog_article set article_status=#{status} where id = #{id}
 	</update>
 	
-	<select id="findByArticleId" resultType="com.polaris.blog.model.domain.ArticleCustom" parameterType="Integer">
+	<select id="findByArticleId" resultType="com.yltrcc.blog.model.domain.ArticleCustom" parameterType="Integer">
 	SELECT a.id,a.user_id,a.article_content,a.article_content_md,a.article_newstime,a.article_summary,a.article_thumbnail,a.article_title,article_type,a.article_comment,a.article_url,GROUP_CONCAT(distinct  b.category_id) categorys ,GROUP_CONCAT(distinct  c.tag_id) tags
 	FROM blog_article a
 	INNER JOIN blog_article_category b
@@ -84,7 +84,7 @@
 	WHERE a.id=#{id}
 	</select>
 	
-	<select id="findDateAndCount" resultType="com.polaris.blog.model.dto.ArchiveBo">
+	<select id="findDateAndCount" resultType="com.yltrcc.blog.model.dto.ArchiveBo">
 	select DATE_FORMAT(article_newstime, '%Y年%m月') as date, count(*) as count from blog_article
 	where article_post = 'post' and article_status = 0
 	group by date order by date desc
@@ -93,7 +93,7 @@
 	<select id="findRepeatByUrl" parameterType="String" resultType="Integer">
 	SELECT COUNT(*) FROM blog_article WHERE article_url = #{articleUrl}
 	</select>
-	<select id="findByArticleUrl" parameterType="String" resultType="com.polaris.blog.model.domain.ArticleCustom">
+	<select id="findByArticleUrl" parameterType="String" resultType="com.yltrcc.blog.model.domain.ArticleCustom">
 		SELECT
 			ma.*,
 			GROUP_CONCAT(distinct mc.category_name ) AS categorysName,
@@ -110,13 +110,13 @@
 			GROUP BY ma.id 
 	</select>
 	
-	<select id="findArtileByCategory" resultType="com.polaris.blog.model.domain.ArticleCustom">
+	<select id="findArtileByCategory" resultType="com.yltrcc.blog.model.domain.ArticleCustom">
 	SELECT * FROM blog_article WHERE id in
 	(SELECT article_id FROM blog_article_category WHERE
 	category_id=(SELECT category_id FROM blog_category WHERE category_url=#{category.categoryUrl})) and article_status =#{status}
 	</select>
 	
-	<select id="findArtileByTag" resultType="com.polaris.blog.model.domain.ArticleCustom">
+	<select id="findArtileByTag" resultType="com.yltrcc.blog.model.domain.ArticleCustom">
 	SELECT * FROM blog_article WHERE id in
 	(SELECT article_id FROM blog_article_tag WHERE
 	tag_id=(SELECT tag_id FROM blog_tag WHERE tag_url=#{tag.tagUrl})) and article_status =#{status}

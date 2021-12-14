@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.polaris.blog.mapper.generator.OptionsMapper">
-  <resultMap id="BaseResultMap" type="com.polaris.blog.model.domain.Options">
+<mapper namespace="com.yltrcc.blog.mapper.generator.OptionsMapper">
+  <resultMap id="BaseResultMap" type="com.yltrcc.blog.model.domain.Options">
     <id column="option_name" jdbcType="VARCHAR" property="optionName" />
     <result column="option_value" jdbcType="VARCHAR" property="optionValue" />
   </resultMap>
@@ -66,7 +66,7 @@
   <sql id="Base_Column_List">
     option_name, option_value
   </sql>
-  <select id="selectByExample" parameterType="com.polaris.blog.model.domain.OptionsExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.yltrcc.blog.model.domain.OptionsExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -91,17 +91,17 @@
     delete from blog_options
     where option_name = #{optionName,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.polaris.blog.model.domain.OptionsExample">
+  <delete id="deleteByExample" parameterType="com.yltrcc.blog.model.domain.OptionsExample">
     delete from blog_options
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.polaris.blog.model.domain.Options">
+  <insert id="insert" parameterType="com.yltrcc.blog.model.domain.Options">
     insert into blog_options (option_name, option_value)
     values (#{optionName,jdbcType=VARCHAR}, #{optionValue,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.polaris.blog.model.domain.Options">
+  <insert id="insertSelective" parameterType="com.yltrcc.blog.model.domain.Options">
     insert into blog_options
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="optionName != null">
@@ -120,7 +120,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.polaris.blog.model.domain.OptionsExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.yltrcc.blog.model.domain.OptionsExample" resultType="java.lang.Long">
     select count(*) from blog_options
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -148,7 +148,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.polaris.blog.model.domain.Options">
+  <update id="updateByPrimaryKeySelective" parameterType="com.yltrcc.blog.model.domain.Options">
     update blog_options
     <set>
       <if test="optionValue != null">
@@ -157,7 +157,7 @@
     </set>
     where option_name = #{optionName,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.polaris.blog.model.domain.Options">
+  <update id="updateByPrimaryKey" parameterType="com.yltrcc.blog.model.domain.Options">
     update blog_options
     set option_value = #{optionValue,jdbcType=VARCHAR}
     where option_name = #{optionName,jdbcType=VARCHAR}
