@@ -98,6 +98,12 @@ public class AttachmentController extends BaseController {
 					return new JsonResult(BlogEnums.OPERATION_ERROR.isFlag(),
 							BlogEnums.OPERATION_ERROR.getMessage());
 				}
+			}else {
+				attachmentService.deleteAttachment(id);
+				log.info("删除文件" + attachment.getPictureName() + "成功");
+				// 添加日志
+				logService.save(new Log(LogConstant.DELETE_ATTACHMENT, LogConstant.DELETE_SUCCESS,
+						ServletUtil.getClientIP(request), DateUtil.date()));
 			}
 		} catch (Exception e) {
 			log.error("删除文件" + attachment.getPictureName() + "失败");
