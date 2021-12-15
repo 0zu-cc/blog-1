@@ -1,19 +1,16 @@
 
 <h1><a href="https://blog.yltrcc.com">blog</a></h1>
 
->  **blog博客系统是我想边学习springboot和thymeleaf编写的一个java博客系统** 
-
->  **取名blog可能是因为我是五月天的假粉丝吧！** 
-
->  **如果对你有帮助的话请右上角点个star，非常感谢！** 
+>  **blog是springboot和thymeleaf编写的一个java博客系统，练手的**
 
 ![JDK](https://img.shields.io/badge/jdk-1.8-green.svg?style=flat-square) 
-[![LICENSE](https://img.shields.io/github/license/ttxxly/blog.svg?style=flat-square)](https://github.com/ttxxly/blog/master/LICENSE)
-[![star](https://img.shields.io/github/stars/ttxxly/blog.svg?label=Stars&style=social)](https://github.com/ttxxly/blog)
+[![LICENSE](https://img.shields.io/github/license/ttxxly/blog.svg?style=flat-square)](https://github.com/yltrcc/blog/master/LICENSE)
+[![star](https://img.shields.io/github/stars/yltrcc/blog.svg?label=Stars&style=social)](https://github.com/yltrcc/blog)
 
-## 使用说明
+# 部署说明
+## windows 环境
 1. 下载代码
-`git clone https://github.com/gujiniCY/blog.git`
+   `git clone https://github.com/yltrcc/blog.git`
 2. 运行sql文件夹下的sql文件
 3. 到src/main/resources下的application.yaml下修改你的数据库链接
 4. 保存好以后 mvn package打包
@@ -21,41 +18,27 @@
 6. 访问http://localhost:8091
 7. 后台管理系统地址http://localhost:8091/admin
 
-# 自动化CICD
+## Linux 环境
+默认你是 Linux Centos 环境
+* 请下载 Docker以及Docker compose
+* 使用 Docker compose 来安装我们需要的环境
+  * 两个Nginx：双机热备
+  * 两个应用：CICD，建立两个job
+  * 一个mysql
+
+
+
+# CICD
 
 目前Nginx 和 mysql 自动安装
 项目jar使用Jenkins、docker配合github hook实现自动构建部署到docker容器中
-自动化构建测试 zaici cesdhi 
-
-### 如果使用又拍云cdn的话请到参数跟随里面设置全程跟随以及开启重定向跟随
 
 
-### 关于评论功能
+# 评论
 目前没有打算自己写评论功能。用的两个评论插件[gitalk](https://github.com/gitalk/gitalk)和[valine](https://ioliu.cn/2017/add-valine-comments-to-your-blog/)
-## 图片演示
-![install.png](https://images.gitee.com/uploads/images/2019/0117/112452_b81fbb50_1574192.png)
-![index.png](https://images.gitee.com/uploads/images/2019/0117/112455_a6973f29_1574192.png)
-![login.png](https://images.gitee.com/uploads/images/2019/0117/112450_7ae99bba_1574192.png)
-![admin.png](https://images.gitee.com/uploads/images/2019/0117/112450_3a600852_1574192.png)
-![post.png](https://images.gitee.com/uploads/images/2019/0117/112451_d6754471_1574192.png)
-![profile.png](https://images.gitee.com/uploads/images/2019/0117/112451_499f580f_1574192.png)
-![theme.png](https://images.gitee.com/uploads/images/2019/0117/112451_a4e0016a_1574192.png)
-![tag.png](https://images.gitee.com/uploads/images/2019/0117/112451_05569d9b_1574192.png)
-![upload_attach.png](https://images.gitee.com/uploads/images/2019/0117/112451_50127984_1574192.png)
-![attach.png](https://images.gitee.com/uploads/images/2019/0117/112451_66bac3bf_1574192.png)
-![write_post.png](https://images.gitee.com/uploads/images/2019/0117/112454_1b3d8fa9_1574192.png)
-![menu.png](https://images.gitee.com/uploads/images/2019/0117/112452_58ac3c2d_1574192.png)
-![link.png](https://images.gitee.com/uploads/images/2019/0117/112452_ecf27d79_1574192.png)
-![new_page.png](https://images.gitee.com/uploads/images/2019/0117/112455_e9bdbee6_1574192.png)
-![option.png](https://images.gitee.com/uploads/images/2019/0117/112452_c40d529a_1574192.png)
-![page.png](https://images.gitee.com/uploads/images/2019/0117/112452_6c1d4dd7_1574192.png)
-![category.png](https://images.gitee.com/uploads/images/2019/0117/112452_0e35930e_1574192.png)
-![index_archives.png](https://images.gitee.com/uploads/images/2019/0117/112453_cc8c9773_1574192.png)
-![index_links.png](https://images.gitee.com/uploads/images/2019/0117/112453_1208a83f_1574192.png)
-![index_post.png](https://images.gitee.com/uploads/images/2019/0117/112454_327abed1_1574192.png)
-## 开源协议
+# 开源协议
 [MIT](https://gitee.com/song_haozhi/blog/blob/master/LICENSE)
-## 致谢：
+# 致谢：
  1. [SpringBoot](http://spring.io/projects/spring-boot) 版本2.0.4
  2. [MyBatis](http://www.mybatis.org/mybatis-3/) ORM框架
  3. [MySQL](https://www.mysql.com/) 数据库，版本5.6
@@ -72,6 +55,7 @@
  14. [halo](https://github.com/ruibaby/halo)  halo博客系统
  15. [Ehcache](http://www.ehcache.org/) Java的进程内缓存框架
  16. [MDTool](https://github.com/cevin15/MDTool) 将markdown转换为html的工具
+ 17. [viewerjs](https://github.com/fengyuanchen/viewerjs) 图片预览工具
 
 
 
