@@ -79,7 +79,7 @@ public class AttachmentController extends BaseController {
 		Attachment attachment = attachmentService.findById(id);
 		try {
 			// 获取用户目录
-			String userPath = System.getProperties().getProperty("user.home") + "/blog";
+			String userPath = "/data/blog";
 			// 获取文件路径
 			String picturePath = attachment.getPicturePath();
 			String pictureSmallPath = attachment.getPictureSmallPath();
