@@ -117,7 +117,7 @@ public class AttachmentController extends BaseController {
 		if (!file.isEmpty()) {
 			try {
 				// 获取用户目录
-				String userPath = System.getProperties().getProperty("user.home") + "/blog/";
+				String userPath = "/data/blog/";
 				// 保存目录
 				StringBuffer hold = new StringBuffer("upload/");
 				// 获取时间，以年月创建目录
