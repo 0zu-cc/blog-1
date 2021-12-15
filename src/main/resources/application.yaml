@@ -8,8 +8,6 @@ logging:
         org.thymeleaf: info
     config: classpath:logback-spring.xml
 spring:
-  resources:
-    static-locations: classpath:/static,classpath:/public,classpath:/resources,classpath:/META-INF/resources,file:/data/blog
   mvc:
     static-path-pattern: /**
   thymeleaf: 

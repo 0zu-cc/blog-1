@@ -42,7 +42,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
 		// 通过addResourceHandler添加资源映射路径，然后通过addResourceLocations来指定路径。可以访问自定义upload文件夹
 		registry.addResourceHandler("/upload/**").addResourceLocations("classpath:/upload/")
-				.addResourceLocations("file:///" + System.getProperties().getProperty("user.home") + "/blog/upload/");
+				.addResourceLocations("file:///" + "/data" + "/blog/upload/");
 		registry.addResourceHandler("/source/**").addResourceLocations("classpath:/templates/themes/");
 		WebMvcConfigurer.super.addResourceHandlers(registry);
 	}
