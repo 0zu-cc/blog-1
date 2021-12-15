@@ -1,0 +1,22 @@
+SERVER_NAME=docker-blog
+#容器id
+CID=$(docker ps | grep "$SERVER_NAME" | awk '{print $1}')
+#镜像id
+IID=$(docker images | grep "$SERVER_NAME" | awk '{print $3}')
+
+# 构建docker镜像
+if [ -n "$IID" ]; then
+    echo "The $SERVER_NAME mirror exists locally.IID=$IID"
+    docker stop $SERVER_NAME   # 停止运行中的容器
+    docker rm $SERVER_NAME     ##删除原来的容器
+    docker rmi $IID   ## 删除原来的镜像
+else
+    echo "The $SERVER_NAME mirror does not exist, Start building the image"
+fi
+
+mvn docker:build
+echo "Current Docker images:"
+docker images | grep $SERVER_NAME
+echo "Start container :"
+docker run --name $SERVER_NAME -p 18081:8081 -v /data/blog:/data/blog -v /etc/localtime:/etc/localtime:ro -d $SERVER_NAME
+echo "Container started successfully!"
