@@ -51,7 +51,8 @@
             <span class="icon-menu cross"><span class="middle"></span></span>
             <ul>
                 <li th:each="menu : ${menus}">
-                <a th:href="${menu.menuUrl}" th:text="${menu.menuName}" th:target="${menu.menuTarget}"></a>
+                    <i th:class="fa ${menu.menuIcon}" aria-hidden="true"></i>
+                    <a th:href="${menu.menuUrl}" th:text="${menu.menuName}" th:target="${menu.menuTarget}"></a>
                 </li>
             </ul>
         </div>
