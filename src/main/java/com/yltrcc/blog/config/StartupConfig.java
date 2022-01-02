@@ -38,10 +38,14 @@ public class StartupConfig implements ApplicationListener<ContextRefreshedEvent>
 	 */
 	private void loadOptions() {
 		List<Options> listMap = optionsService.selectMap();
-		if (listMap.size() > 0 && !listMap.isEmpty()) {
-			for (Options options : listMap) {
-				BlogConst.OPTIONS.put(options.getOptionName(), options.getOptionValue());
-			}
+		if (listMap == null)
+			return;
+		if (listMap.size() == 0)
+			return;
+		for (Options options : listMap) {
+			if(options.getOptionValue() == null || !"".equals(options.getOptionValue()))
+				continue;
+			BlogConst.OPTIONS.put(options.getOptionName(), options.getOptionValue());
 		}
 	}
 
