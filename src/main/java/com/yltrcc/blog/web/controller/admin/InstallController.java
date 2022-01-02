@@ -162,11 +162,14 @@ public class InstallController extends BaseController{
 		//重新加载设置项
 		BlogConst.OPTIONS.clear();
 		List<Options> listMap = optionsService.selectMap();
-		if (listMap.size() > 0 && !listMap.isEmpty()) {
+		if (listMap != null && listMap.size() > 0) {
 			for (Options options : listMap) {
+				if(options.getOptionValue() == null || "".equals(options.getOptionValue()))
+					continue;
 				BlogConst.OPTIONS.put(options.getOptionName(), options.getOptionValue());
 			}
 		}
+
 		//重置菜单
 		BlogConst.MENUS.clear();
 		BlogConst.MENUS = menuService.findMenus();

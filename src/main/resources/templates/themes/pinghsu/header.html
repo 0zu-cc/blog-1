@@ -12,6 +12,7 @@
     <meta name="description" th:content="${article !=null ?article.articleSummary: ''}"/>
     <link rel="shortcut icon" th:href="${#maps.containsKey(options,'ico_logo') == false ? '/static/img/favicon.ico' : options['ico_logo'] }"/>
    	<title thSys:text="${title}"></title>
+    <script src="https://use.fontawesome.com/91ff792bcc.js"></script>
     <link th:href="@{//cdn.bootcss.com/highlight.js/9.9.0/styles/xcode.min.css}" rel="stylesheet"/>
     <link th:href="@{/source/pinghsu/source/style.min.css}" rel="stylesheet"/>
     <script th:src="@{//cdn.bootcss.com/jquery/2.2.3/jquery.min.js}"></script>
@@ -33,10 +34,10 @@
 <header id="header" class="header bg-white">
     <div class="navbar-container">
         <a  class="navbar-logo" th:href="${options['blog_url']}">
-           <img th:src="${#maps.containsKey(options,'blog_logo') == false ? '/static/img/transparent.png' : options['blog_logo'] }"/>
+           <img src="/static/img/portrait.jpg"/>
         </a>
         <div class="navbar-menu" th:each="menu : ${menus}">
-            <a th:href="${menu.menuUrl}" th:text="${menu.menuName}" th:target="${menu.menuTarget}"></a>
+            <i th:class="${menu.menuIcon}" aria-hidden="true"></i><a th:href="${menu.menuUrl}" th:text="${menu.menuName}" th:target="${menu.menuTarget}"></a>
         </div>
         <div class="navbar-search" onclick="">
             <span class="icon-search"></span>

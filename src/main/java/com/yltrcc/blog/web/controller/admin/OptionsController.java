@@ -52,8 +52,12 @@ public class OptionsController extends BaseController {
 			optionsService.save(map);
 			BlogConst.OPTIONS.clear();
 			List<Options> listMap = optionsService.selectMap();
-			for (Options options : listMap) {
-				BlogConst.OPTIONS.put(options.getOptionName(), options.getOptionValue());
+			if (listMap != null && listMap.size() > 0) {
+				for (Options options : listMap) {
+					if(options.getOptionValue() == null || "".equals(options.getOptionValue()))
+						continue;
+					BlogConst.OPTIONS.put(options.getOptionName(), options.getOptionValue());
+				}
 			}
 		} catch (Exception e) {
 			log.error(e.getMessage());

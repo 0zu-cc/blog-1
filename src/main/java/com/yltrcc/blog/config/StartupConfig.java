@@ -43,7 +43,7 @@ public class StartupConfig implements ApplicationListener<ContextRefreshedEvent>
 		if (listMap.size() == 0)
 			return;
 		for (Options options : listMap) {
-			if(options.getOptionValue() == null || !"".equals(options.getOptionValue()))
+			if(options.getOptionValue() == null || "".equals(options.getOptionValue()))
 				continue;
 			BlogConst.OPTIONS.put(options.getOptionName(), options.getOptionValue());
 		}
