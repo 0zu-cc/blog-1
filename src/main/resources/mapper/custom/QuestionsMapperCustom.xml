@@ -60,15 +60,24 @@
 	update blog_Questions set Questions_status=#{status} where id = #{id}
 	</update>
 	
-	<select id="findByQuestionsId" resultType="com.yltrcc.blog.model.domain.QuestionsCustom" parameterType="Integer">
-	SELECT a.id,a.user_id,a.Questions_content,a.Questions_content_md,a.Questions_newstime,a.Questions_summary,a.Questions_thumbnail,a.Questions_title,Questions_type,a.Questions_comment,a.Questions_url,GROUP_CONCAT(distinct  b.category_id) categorys ,GROUP_CONCAT(distinct  c.tag_id) tags
-	FROM qb_details a
-	INNER JOIN blog_Questions_category b
-	on b.Questions_id=a.id
-	LEFT JOIN blog_Questions_tag c
-	on a.id=b.Questions_id
-	AND b.Questions_id=c.Questions_id
-	WHERE a.id=#{id}
+	<select id="findByQuestionsId" resultType="com.yltrcc.blog.model.domain.Question" parameterType="Integer">
+	SELECT
+	a.id,
+	a.user_id,
+	a.article_content,
+	a.article_content_md,
+	a.article_newstime,
+	a.article_summary,
+	a.article_thumbnail,
+	a.article_title,
+	article_type,
+	a.article_comment,
+	a.article_url
+FROM
+	qb_details a
+
+WHERE
+	a.id = #{id}
 	</select>
 	
 	<select id="findDateAndCount" resultType="com.yltrcc.blog.model.dto.ArchiveBo">
