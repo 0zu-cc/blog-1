@@ -23,6 +23,11 @@ import java.util.Random;
 @RequestMapping(value = "/api/random")
 public class RandomController {
 
+    /**
+     * 上一个随机数，初始值-1
+     */
+    int lastNums = -1;
+
     @Autowired
     private QuestionService questionService;
 
@@ -43,7 +48,11 @@ public class RandomController {
         for (int i=0; i<nums; i++) {
             //获取随机数
             int i2 = random.nextInt(count) + 1;
-            Question question = questionService.findByQuestionsId(i2);
+            while (i2 == lastNums) {
+                i2 = random.nextInt(count) + 1;
+            }
+            Question question = questionService.findByQuestionId(i2);
+            lastNums = i2;
             sb.append(question.getArticleContentMd());
             sb.append("\n---\n");
         }
@@ -60,6 +69,7 @@ public class RandomController {
 
         int count = questionService.getCounts();
 
+
         if (count == 0) {
             return "Sorry, 没有数据，请添加数据";
         }
@@ -68,7 +78,7 @@ public class RandomController {
         for (int i=0; i<nums; i++) {
             //获取随机数
             int i2 = random.nextInt(count) + 1;
-            Question question = questionService.findByQuestionsId(i2);
+            Question question = questionService.findByQuestionId(i2);
             sb.append(question.getArticleContent());
             sb.append("\n\n");
         }
