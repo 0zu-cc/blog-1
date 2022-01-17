@@ -67,8 +67,7 @@
 					<div class="form-group row">
 						<label class="control-label col-md-3">文章分类:</label>
 						<div class="col-md-9">
-							<select name="categorys" class="form-control" id="categorySelect"
-								multiple="">
+							<select name="categorys" class="form-control" id="categorySelect" multiple="">
 								<optgroup label="点击选择，可多选">
 									<option th:each="category:${categorys}"
 										th:value="${category.categoryId}"
@@ -80,8 +79,7 @@
 					<div class="form-group row">
 						<label class="control-label col-md-3">文章标签:</label>
 						<div class="col-md-9">
-							<select name="tags" class="form-control" id="tagSelect"
-								multiple="">
+							<select name="tags" class="form-control" id="tagSelect" multiple="">
 								<optgroup label="点击选择，可多选">
 									<option th:each="tag:${tags}" th:value="${tag.tagId}"
 										th:text="${tag.tagName}"></option>

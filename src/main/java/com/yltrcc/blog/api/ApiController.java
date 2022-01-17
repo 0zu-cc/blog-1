@@ -20,58 +20,7 @@ import java.util.Random;
 @RequestMapping(value = "/api")
 public class ApiController {
 
-    @Autowired
-    private QuestionsService questionsService;
 
-    /**
-     * 获取Markdown格式的面试题 - 用于微信公众号
-     * @return
-     */
-    @GetMapping("/random/getmk")
-    public String getmk(@RequestParam("nums") Integer nums) {
-
-        int count = questionsService.getCounts();
-
-        if (count == 0) {
-            return "Sorry, 没有数据，请添加数据";
-        }
-        StringBuilder sb = new StringBuilder();
-        Random random = new Random();
-        for (int i=0; i<nums; i++) {
-            //获取随机数
-            int i2 = random.nextInt(count) + 1;
-            Question question = questionsService.findByQuestionsId(i2);
-            sb.append(question.getArticleContentMd());
-            sb.append("\n---\n");
-        }
-
-        return sb.toString();
-    }
-
-    /**
-     * 获取Html格式的面试题
-     * @return
-     */
-    @GetMapping("/random/getpage")
-    public String getpage(@RequestParam("nums") Integer nums) {
-
-        int count = questionsService.getCounts();
-
-        if (count == 0) {
-            return "Sorry, 没有数据，请添加数据";
-        }
-        StringBuilder sb = new StringBuilder();
-        Random random = new Random();
-        for (int i=0; i<nums; i++) {
-            //获取随机数
-            int i2 = random.nextInt(count) + 1;
-            Question question = questionsService.findByQuestionsId(i2);
-            sb.append(question.getArticleContent());
-            sb.append("\n\n");
-        }
-
-        return sb.toString();
-    }
 
     /**
      * 获取Json格式的面试题 用于安卓端口

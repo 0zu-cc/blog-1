@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.yltrcc.blog.mapper.custom.QuestionsMapperCustom;
 import com.yltrcc.blog.mapper.custom.CategoryMapperCustom;
 import com.yltrcc.blog.mapper.custom.TagMapperCustom;
+import com.yltrcc.blog.mapper.generator.QuestionMapper;
 import com.yltrcc.blog.model.domain.*;
 import com.yltrcc.blog.model.dto.ArchiveBo;
 import com.yltrcc.blog.service.QuestionsService;
@@ -13,6 +14,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -30,10 +32,28 @@ public class QuestionsServiceImpl implements QuestionsService {
     @Autowired
     private QuestionsMapperCustom questionsMapperCustom;
 
+    @Autowired
+    private QuestionMapper questionMapper;
 
     @Override
     public void save(Question Question, Long[] tagsName, Long[] categorys) throws Exception {
-
+        questionMapper.insert(Question);
+        if (categorys != null) {
+           /* Arrays.asList(categorys).stream().forEach(cate -> {
+                ArticleCategory articleCategory = new ArticleCategory();
+                articleCategory.setArticleId(article.getId());
+                articleCategory.setCategoryId(cate);
+                articleCategoryMapper.insert(articleCategory);
+            });*/
+        }
+        if (tagsName != null) {
+            /*Arrays.asList(tags).stream().forEach(tag -> {
+                ArticleTag articleTag = new ArticleTag();
+                articleTag.setArticleId(article.getId());
+                articleTag.setTagId(tag);
+                articleTagMapper.insert(articleTag);
+            });*/
+        }
     }
 
     @Override

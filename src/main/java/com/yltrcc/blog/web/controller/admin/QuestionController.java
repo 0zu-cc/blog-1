@@ -38,8 +38,8 @@ import java.util.Map;
  * @version 1.0
  */
 @Controller
-@RequestMapping("/admin/questions")
-public class QbankController extends BaseController {
+@RequestMapping("/admin/question")
+public class QuestionController extends BaseController {
 
     @Autowired
     private CategoryService categoryService;
@@ -103,7 +103,7 @@ public class QbankController extends BaseController {
      */
     @PostMapping(value = "/new/save")
     @ResponseBody
-    public JsonResult save(Article article, Long[] tags, Long[] categorys, HttpServletRequest request) {
+    public JsonResult save(Question article, Long[] tags, Long[] categorys, HttpServletRequest request) {
         try {
             if (StrUtil.isEmpty(article.getArticleTitle())) {
                 return new JsonResult(false, "标题不能为空");
@@ -148,7 +148,7 @@ public class QbankController extends BaseController {
                         article.setArticleSummary(summaryText);
                     }
                 }
-                articleService.save(article, tags, categorys);
+                questionsService.save(article, tags, categorys);
                 // 添加日志
                 logService.save(new Log(LogConstant.PUBLISH_AN_ARTICLE, LogConstant.SUCCESS,
                         ServletUtil.getClientIP(request), DateUtil.date()));
@@ -175,7 +175,7 @@ public class QbankController extends BaseController {
                 }
                 // 文章最后修改时间
                 article.setArticleUpdatetime(DateUtil.date());
-                articleService.update(article, tags, categorys);
+                questionsService.update(article, tags, categorys);
                 // 添加日志
                 logService.save(new Log(LogConstant.UPDATE_AN_ARTICLE, LogConstant.SUCCESS,
                         ServletUtil.getClientIP(request), DateUtil.date()));
@@ -285,7 +285,7 @@ public class QbankController extends BaseController {
         } catch (Exception e) {
             log.error(e.getMessage());
         }
-        return "admin/admin_new_article";
+        return "admin/admin_new_question";
     }
 
     /**
