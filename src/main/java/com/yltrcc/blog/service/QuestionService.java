@@ -18,7 +18,7 @@ import java.util.List;
  * @author yltrcc
  * @version 1.0
  */
-public interface QuestionsService {
+public interface QuestionService {
 
     /**
      * 保存题库

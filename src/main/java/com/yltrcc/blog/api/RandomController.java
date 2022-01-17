@@ -1,7 +1,7 @@
 package com.yltrcc.blog.api;
 
 import com.yltrcc.blog.model.domain.Question;
-import com.yltrcc.blog.service.QuestionsService;
+import com.yltrcc.blog.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +24,7 @@ import java.util.Random;
 public class RandomController {
 
     @Autowired
-    private QuestionsService questionsService;
+    private QuestionService questionService;
 
     /**
      * 获取Markdown格式的面试题 - 用于微信公众号，安卓端
@@ -33,7 +33,7 @@ public class RandomController {
     @GetMapping("/getmk")
     public String getmk(@RequestParam("nums") Integer nums) {
 
-        int count = questionsService.getCounts();
+        int count = questionService.getCounts();
 
         if (count == 0) {
             return "Sorry, 没有数据，请添加数据";
@@ -43,7 +43,7 @@ public class RandomController {
         for (int i=0; i<nums; i++) {
             //获取随机数
             int i2 = random.nextInt(count) + 1;
-            Question question = questionsService.findByQuestionsId(i2);
+            Question question = questionService.findByQuestionsId(i2);
             sb.append(question.getArticleContentMd());
             sb.append("\n---\n");
         }
@@ -58,7 +58,7 @@ public class RandomController {
     @GetMapping("/getpage")
     public String getpage(@RequestParam("nums") Integer nums) {
 
-        int count = questionsService.getCounts();
+        int count = questionService.getCounts();
 
         if (count == 0) {
             return "Sorry, 没有数据，请添加数据";
@@ -68,7 +68,7 @@ public class RandomController {
         for (int i=0; i<nums; i++) {
             //获取随机数
             int i2 = random.nextInt(count) + 1;
-            Question question = questionsService.findByQuestionsId(i2);
+            Question question = questionService.findByQuestionsId(i2);
             sb.append(question.getArticleContent());
             sb.append("\n\n");
         }

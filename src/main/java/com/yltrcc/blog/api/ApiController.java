@@ -1,11 +1,6 @@
 package com.yltrcc.blog.api;
 
-import com.yltrcc.blog.model.domain.Question;
-import com.yltrcc.blog.service.QuestionsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Random;
 
 /**
  * Package: com.yltrcc.blog.api

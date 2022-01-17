@@ -1,20 +1,14 @@
 package com.yltrcc.blog.service.impl;
 
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yltrcc.blog.mapper.custom.QuestionsMapperCustom;
-import com.yltrcc.blog.mapper.custom.CategoryMapperCustom;
-import com.yltrcc.blog.mapper.custom.TagMapperCustom;
 import com.yltrcc.blog.mapper.generator.QuestionMapper;
 import com.yltrcc.blog.model.domain.*;
 import com.yltrcc.blog.model.dto.ArchiveBo;
-import com.yltrcc.blog.service.QuestionsService;
+import com.yltrcc.blog.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -27,7 +21,7 @@ import java.util.List;
  * @version 1.0
  */
 @Service
-public class QuestionsServiceImpl implements QuestionsService {
+public class QuestionServiceImpl implements QuestionService {
 
     @Autowired
     private QuestionsMapperCustom questionsMapperCustom;

@@ -15,7 +15,7 @@ import com.yltrcc.blog.model.enums.BlogEnums;
 import com.yltrcc.blog.model.enums.PostType;
 import com.yltrcc.blog.service.ArticleService;
 import com.yltrcc.blog.service.CategoryService;
-import com.yltrcc.blog.service.QuestionsService;
+import com.yltrcc.blog.service.QuestionService;
 import com.yltrcc.blog.service.TagService;
 import com.yltrcc.blog.util.BlogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,10 +48,10 @@ public class QuestionController extends BaseController {
     @Autowired
     private ArticleService articleService;
     @Autowired
-    private QuestionsService questionsService;
+    private QuestionService questionService;
 
     /**
-     * 显示所有文章
+     * 显示所有面试题
      *
      * @param model
      * @param page
@@ -59,7 +59,7 @@ public class QuestionController extends BaseController {
      * @return
      */
     @GetMapping
-    public String article(Model model, @RequestParam(value = "page", defaultValue = "1") int page,
+    public String question(Model model, @RequestParam(value = "page", defaultValue = "1") int page,
                           @RequestParam(value = "limit", defaultValue = "10") int limit,
                           @RequestParam(value = "status", defaultValue = "0") int status) {
         ArticleCustom articleCustom = new ArticleCustom();
@@ -148,7 +148,7 @@ public class QuestionController extends BaseController {
                         article.setArticleSummary(summaryText);
                     }
                 }
-                questionsService.save(article, tags, categorys);
+                questionService.save(article, tags, categorys);
                 // 添加日志
                 logService.save(new Log(LogConstant.PUBLISH_AN_ARTICLE, LogConstant.SUCCESS,
                         ServletUtil.getClientIP(request), DateUtil.date()));
@@ -175,7 +175,7 @@ public class QuestionController extends BaseController {
                 }
                 // 文章最后修改时间
                 article.setArticleUpdatetime(DateUtil.date());
-                questionsService.update(article, tags, categorys);
+                questionService.update(article, tags, categorys);
                 // 添加日志
                 logService.save(new Log(LogConstant.UPDATE_AN_ARTICLE, LogConstant.SUCCESS,
                         ServletUtil.getClientIP(request), DateUtil.date()));
