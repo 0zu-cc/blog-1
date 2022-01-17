@@ -2,8 +2,8 @@ package com.yltrcc.blog.service;
 
 import com.github.pagehelper.PageInfo;
 import com.yltrcc.blog.model.domain.Question;
-import com.yltrcc.blog.model.domain.QuestionsCustom;
 import com.yltrcc.blog.model.domain.Category;
+import com.yltrcc.blog.model.domain.QuestionCustom;
 import com.yltrcc.blog.model.domain.Tag;
 import com.yltrcc.blog.model.dto.ArchiveBo;
 
@@ -39,18 +39,18 @@ public interface QuestionService {
      * @param string
      * @return
      */
-    List<QuestionsCustom> findAllQuestions(int status, String post);
+    List<QuestionCustom> findAllQuestion(int status, String post);
 
     /**
      * 分页查询所有题库
      *
      * @param limit
      * @param page
-     * @param QuestionsCustom
+     * @param QuestionCustom
      *            题库对象
      * @return
      */
-    PageInfo<QuestionsCustom> findPageQuestions(int page, int limit, QuestionsCustom QuestionsCustom);
+    PageInfo<QuestionCustom> findPageQuestion(int page, int limit, QuestionCustom QuestionCustom);
 
     /**
      * 状态统计条数
@@ -87,10 +87,10 @@ public interface QuestionService {
     /**
      * id查询题库
      *
-     * @param Questions_id
+     * @param questionId
      * @return
      */
-    Question findByQuestionsId(Integer Questions_id);
+    QuestionCustom findByQuestionId(Integer questionId);
 
     /**
      * 修改题库
@@ -126,7 +126,7 @@ public interface QuestionService {
      * @param QuestionsUrl
      * @return 题库
      */
-    QuestionsCustom findByQuestionsUrl(String QuestionsUrl);
+    QuestionCustom findByQuestionsUrl(String QuestionsUrl);
 
     /**
      * 分页查询分类下的所有题库
@@ -137,7 +137,7 @@ public interface QuestionService {
      * @param status 题库状态
      * @return
      */
-    PageInfo<QuestionsCustom> findArtileByCategory(int page, int limit, Category category, int status);
+    PageInfo<QuestionCustom> findArtileByCategory(int page, int limit, Category category, int status);
 
     /**
      * 分页查询标签下的所有题库
@@ -148,7 +148,7 @@ public interface QuestionService {
      * @param status 题库状态
      * @return
      */
-    PageInfo<QuestionsCustom> findArtileByTag(Integer page, Integer limit, Tag tag, int status);
+    PageInfo<QuestionCustom> findArtileByTag(Integer page, Integer limit, Tag tag, int status);
 
     /**
      * 标题分页搜索题库

@@ -62,22 +62,12 @@ public class QuestionController extends BaseController {
     public String question(Model model, @RequestParam(value = "page", defaultValue = "1") int page,
                           @RequestParam(value = "limit", defaultValue = "10") int limit,
                           @RequestParam(value = "status", defaultValue = "0") int status) {
-        ArticleCustom articleCustom = new ArticleCustom();
-        articleCustom.setArticleStatus(status);
-        articleCustom.setArticlePost(PostType.POST_TYPE_POST.getValue());
-        PageInfo<ArticleCustom> pageInfo = articleService.findPageArticle(page, limit, articleCustom);
+        QuestionCustom questionCustom = new QuestionCustom();
+        questionCustom.setArticleStatus(status);
+        questionCustom.setArticlePost(PostType.POST_TYPE_POST.getValue());
+        PageInfo<QuestionCustom> pageInfo = questionService.findPageQuestion(page, limit, questionCustom);
         model.addAttribute("info", pageInfo);
-        // 已发布条数
-        model.addAttribute("published",
-                articleService.countByStatus(ArticleStatus.PUBLISH.getStatus(), PostType.POST_TYPE_POST.getValue()));
-        // 草稿条数
-        model.addAttribute("draft",
-                articleService.countByStatus(ArticleStatus.DRAFT.getStatus(), PostType.POST_TYPE_POST.getValue()));
-        // 回收站条数
-        model.addAttribute("recycle",
-                articleService.countByStatus(ArticleStatus.RECYCLE.getStatus(), PostType.POST_TYPE_POST.getValue()));
-        model.addAttribute("status", status);
-        return "admin/admin_article";
+        return "admin/admin_question";
     }
 
     /**
@@ -302,14 +292,14 @@ public class QuestionController extends BaseController {
             // 获取所有标签
             List<Tag> tags = tagService.findTags();
             // 获取文章信息
-            ArticleCustom articleCustom = articleService.findByArticleId(article_id);
+            QuestionCustom questionCustom = questionService.findByQuestionId(article_id);
             model.addAttribute("categorys", categorys);
             model.addAttribute("tags", tags);
-            model.addAttribute("articleCustom", articleCustom);
+            model.addAttribute("questionCustom", questionCustom);
         } catch (Exception e) {
             log.error(e.getMessage());
         }
-        return "admin/admin_edit_article";
+        return "admin/admin_edit_question";
     }
 
     /**

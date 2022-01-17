@@ -5,7 +5,7 @@ package com.yltrcc.blog.model.domain;
  * @createDate 创建时间：2018年10月30日 下午8:33:14
  *
  */
-public class QuestionsCustom extends Article {
+public class QuestionCustom extends Question {
 	// 分类id
 	private String categorys;
 	// 标签id

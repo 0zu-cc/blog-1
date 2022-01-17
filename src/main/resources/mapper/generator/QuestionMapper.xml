@@ -305,7 +305,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.yltrcc.blog.model.domain.Article">
-    update blog_article
+    update qb_details
     <set>
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
