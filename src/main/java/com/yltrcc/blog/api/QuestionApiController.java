@@ -35,7 +35,7 @@ public class QuestionApiController {
         if (count == 0) {
             return "Sorry, 没有数据，请添加数据";
         }
-        if (id >= count) {
+        if (id > count) {
             return "Sorry, 当前数据库中没有此数据";
         }
         StringBuilder sb = new StringBuilder();
