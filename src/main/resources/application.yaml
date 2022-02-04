@@ -1,5 +1,5 @@
 server: 
-  port: 8081
+  port: 8080
 logging:
     level: 
         org.springframework: info
@@ -17,9 +17,9 @@ spring:
     cache: false
   datasource: 
          type: com.alibaba.druid.pool.DruidDataSource
-         url: jdbc:mysql://129.28.156.166:3306/blog?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&autoReconnect=true&failOverReadOnly=false&useSSL=false
+         url: jdbc:mysql://localhost:3306/blog?&serverTimezone=GMT&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&autoReconnect=true&failOverReadOnly=false&useSSL=false
          username: root
-         password: VfpApTYlGIdNQM0O..
+         password: 12345678
          driver-class-name: com.mysql.jdbc.Driver
   #文件上传配置
   servlet:

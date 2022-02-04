@@ -23,10 +23,6 @@ import java.util.Random;
 @RequestMapping(value = "/api/question")
 public class QuestionApiController {
 
-    /**
-     * 当前数据库中面试题的总数
-     */
-    int count = -1;
 
     @Autowired
     private QuestionService questionService;
@@ -35,9 +31,7 @@ public class QuestionApiController {
     @GetMapping("/getpage")
     public String getpage(@RequestParam("id") int id) {
 
-        if (count == -1) {
-            count = questionService.getCounts();
-        }
+        int count = questionService.getCounts();
         if (count == 0) {
             return "Sorry, 没有数据，请添加数据";
         }
@@ -55,10 +49,6 @@ public class QuestionApiController {
     @GetMapping("/getcount")
     public int getcount() {
 
-        if (count == -1) {
-            count = questionService.getCounts();
-        }
-
-        return count;
+        return questionService.getCounts();
     }
 }
