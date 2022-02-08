@@ -11,7 +11,11 @@ import java.util.List;
  * @author yltrcc
  * @version 1.0
  */
-public class ApiResponse {
+public class ApiResponse<T> {
+
+    public ApiResponse(List<T> data) {
+        this.data = data;
+    }
 
     /**
      * 请求结果HTTP状态码 200 表示成功
@@ -25,7 +29,7 @@ public class ApiResponse {
     private int code;
 
     /**
-     * 用户可理解的错误信息
+     * 用户可理解的信息
      */
     private String message;
 
@@ -37,7 +41,7 @@ public class ApiResponse {
     /**
      * 请求结果数据
      */
-    private List<Object> data;
+    private List<T> data;
 
     public int getStatus() {
         return status;
@@ -71,11 +75,11 @@ public class ApiResponse {
         this.developerMessage = developerMessage;
     }
 
-    public List<Object> getData() {
+    public List<T> getData() {
         return data;
     }
 
-    public void setData(List<Object> data) {
+    public void setData(List<T> data) {
         this.data = data;
     }
 }
