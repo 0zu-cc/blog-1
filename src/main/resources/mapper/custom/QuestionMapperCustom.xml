@@ -21,6 +21,9 @@
             <if test="articlePost != null">
                 and article_post=#{articlePost}
             </if>
+            <if test="articleTitle != null">
+                and article_title like #{articleTitle}
+            </if>
         </where>
     </sql>
 
@@ -91,20 +94,12 @@ WHERE
     <select id="findRepeatByUrl" parameterType="String" resultType="Integer">
 	SELECT COUNT(*) FROM blog_Question WHERE Question_url = #{QuestionUrl}
 	</select>
-    <select id="findByQuestionUrl" parameterType="String" resultType="com.yltrcc.blog.model.domain.QuestionCustom">
+    <select id="findByQuestionsUrl" parameterType="String" resultType="com.yltrcc.blog.model.domain.QuestionCustom">
 		SELECT
-			ma.*,
-			GROUP_CONCAT(distinct mc.category_name ) AS categorysName,
-			GROUP_CONCAT(distinct mc.category_url ) AS categorysUrl,
-			GROUP_CONCAT(distinct mt.tag_name ) AS tagsName,
-			GROUP_CONCAT(distinct mt.tag_url ) AS tagsUrl
+			ma.*
 			FROM
-			blog_Question ma
-			LEFT JOIN blog_Question_category mac ON ma.id = mac.Question_id
-			LEFT JOIN blog_category mc ON mc.category_id = mac.category_id
-			LEFT JOIN blog_Question_tag mat ON ma.id = mat.Question_id
-			LEFT JOIN blog_tag mt ON mt.tag_id = mat.tag_id
-			WHERE Question_url=#{QuestionUrl}
+			qb_details ma
+			WHERE article_url=#{questionsUrl}
 			GROUP BY ma.id 
 	</select>
 
@@ -119,4 +114,6 @@ WHERE
 	(SELECT Question_id FROM blog_Question_tag WHERE
 	tag_id=(SELECT tag_id FROM blog_tag WHERE tag_url=#{tag.tagUrl})) and Question_status =#{status}
 	</select>
+
+
 </mapper>

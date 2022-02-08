@@ -4,10 +4,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.yltrcc.blog.model.domain.*;
+import com.yltrcc.blog.service.*;
 import com.yltrcc.blog.util.BlogUtil;
-import com.yltrcc.blog.model.domain.Article;
-import com.yltrcc.blog.model.domain.ArticleCustom;
-import com.yltrcc.blog.model.domain.Category;
 import com.yltrcc.blog.model.dto.ArchiveBo;
 import com.yltrcc.blog.model.dto.BlogConst;
 import com.yltrcc.blog.model.enums.PageNumber;
@@ -19,14 +18,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
-import com.yltrcc.blog.model.domain.Link;
-import com.yltrcc.blog.model.domain.Tag;
 import com.yltrcc.blog.model.enums.ArticleStatus;
 import com.yltrcc.blog.model.enums.PostType;
-import com.yltrcc.blog.service.ArticleService;
-import com.yltrcc.blog.service.CategoryService;
-import com.yltrcc.blog.service.LinksService;
-import com.yltrcc.blog.service.TagService;
 import com.yltrcc.blog.web.controller.admin.BaseController;
 import com.sun.syndication.io.FeedException;
 
@@ -42,6 +35,8 @@ import cn.hutool.extra.servlet.ServletUtil;
 public class IndexController extends BaseController {
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private QuestionService questionService;
 	@Autowired
 	private LinksService linksService;
 	@Autowired
@@ -112,6 +107,27 @@ public class IndexController extends BaseController {
 			updateArticleViews(articleCustom.getId(), articleCustom.getArticleViews());
 		}
 		model.addAttribute("article", articleCustom);
+		return this.render("post");
+	}
+
+	/**
+	 * 面试题页
+	 *
+	 * @param model
+	 * @param articleUrl
+	 *            文章url
+	 * @return
+	 */
+	@GetMapping(value = { "question/{articleUrl}", "post/{articleUrl}.html" })
+	public String question(Model model, @PathVariable(value = "articleUrl") String articleUrl, HttpServletRequest request) {
+		QuestionCustom questionCustom= questionService.findByQuestionsUrl(articleUrl);
+		if (questionCustom == null) {
+			return this.render_404();
+		}
+		if (!checkRepeatIp(request, questionCustom.getId())) {
+			updateArticleViews(questionCustom.getId(), questionCustom.getArticleViews());
+		}
+		model.addAttribute("article", questionCustom);
 		return this.render("post");
 	}
 

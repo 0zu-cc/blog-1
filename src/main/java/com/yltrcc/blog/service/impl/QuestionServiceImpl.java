@@ -117,7 +117,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public QuestionCustom findByQuestionsUrl(String QuestionsUrl) {
-        return null;
+        return questionMapperCustom.findByQuestionsUrl(QuestionsUrl);
     }
 
     @Override
