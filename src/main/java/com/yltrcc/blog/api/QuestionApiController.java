@@ -1,6 +1,8 @@
 package com.yltrcc.blog.api;
 
+import com.yltrcc.blog.model.domain.Category;
 import com.yltrcc.blog.model.domain.Question;
+import com.yltrcc.blog.model.domain.QuestionCategory;
 import com.yltrcc.blog.service.QuestionCategoryService;
 import com.yltrcc.blog.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -57,8 +60,8 @@ public class QuestionApiController {
     }
 
     @GetMapping("/getcategory")
-    public int getcategory() {
+    public List<QuestionCategory> getcategory() {
 
-        return questionService.getCounts();
+        return questionCategoryService.findCategory();
     }
 }

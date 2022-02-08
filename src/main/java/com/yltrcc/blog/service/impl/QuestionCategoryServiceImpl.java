@@ -1,8 +1,8 @@
 package com.yltrcc.blog.service.impl;
 
 import com.yltrcc.blog.mapper.generator.CategoryMapper;
-import com.yltrcc.blog.model.domain.Category;
-import com.yltrcc.blog.model.domain.CategoryExample;
+import com.yltrcc.blog.mapper.generator.QuestionCategoryMapper;
+import com.yltrcc.blog.model.domain.*;
 import com.yltrcc.blog.service.CategoryService;
 import com.yltrcc.blog.service.QuestionCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -21,16 +22,21 @@ import java.util.List;
 @Service
 @Transactional(rollbackFor = RuntimeException.class)
 public class QuestionCategoryServiceImpl implements QuestionCategoryService {
-	private static final String CATEGORYS_CACHE_KEY = "'category'";
-	private static final String CATEGORYS_CACHE_NAME = "categorys";
+	private static final String CATEGORYS_CACHE_KEY = "'QuestionCategory'";
+	private static final String CATEGORYS_CACHE_NAME = "questionCategories";
 
 	@Autowired
 	private CategoryMapper categoryMapper;
+	@Resource
+	private QuestionCategoryMapper questionCategoryMapper;
 
 	@Override
-	@Cacheable(value = CATEGORYS_CACHE_NAME, key = CATEGORYS_CACHE_KEY)
-	public List<Category> findCategory() {
-		return categoryMapper.selectByExample(null);
+	//@Cacheable(value = CATEGORYS_CACHE_NAME, key = CATEGORYS_CACHE_KEY)
+	public List<QuestionCategory> findCategory() {
+		QuestionCategoryExample example = new QuestionCategoryExample();
+		QuestionCategoryExample.Criteria questionCategoryCriteria = example.createCriteria();
+		questionCategoryCriteria.andIsFinalEqualTo(1);
+		return questionCategoryMapper.selectByExample(example);
 	}
 
 	@Override

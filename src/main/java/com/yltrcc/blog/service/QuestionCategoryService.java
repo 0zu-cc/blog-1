@@ -1,6 +1,7 @@
 package com.yltrcc.blog.service;
 
 import com.yltrcc.blog.model.domain.Category;
+import com.yltrcc.blog.model.domain.QuestionCategory;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface QuestionCategoryService {
 	 *
 	 * @return
 	 */
-	List<Category> findCategory();
+	List<QuestionCategory> findCategory();
 
 	/**
 	 * 根据id查询
