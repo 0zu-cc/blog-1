@@ -1,6 +1,7 @@
 package com.yltrcc.blog.api;
 
 import com.yltrcc.blog.model.domain.Question;
+import com.yltrcc.blog.service.QuestionCategoryService;
 import com.yltrcc.blog.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,9 @@ public class QuestionApiController {
     @Autowired
     private QuestionService questionService;
 
+    @Autowired
+    private QuestionCategoryService questionCategoryService;
+
 
     @GetMapping("/getpage")
     public String getpage(@RequestParam("id") int id) {
@@ -48,6 +52,12 @@ public class QuestionApiController {
 
     @GetMapping("/getcount")
     public int getcount() {
+
+        return questionService.getCounts();
+    }
+
+    @GetMapping("/getcategory")
+    public int getcategory() {
 
         return questionService.getCounts();
     }

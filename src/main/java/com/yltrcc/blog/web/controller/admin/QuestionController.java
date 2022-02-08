@@ -60,11 +60,14 @@ public class QuestionController extends BaseController {
      */
     @GetMapping
     public String question(Model model, @RequestParam(value = "page", defaultValue = "1") int page,
-                          @RequestParam(value = "limit", defaultValue = "10") int limit,
+                          @RequestParam(value = "limit", defaultValue = "8") int limit,
                           @RequestParam(value = "title", defaultValue = "") String title,
-                          @RequestParam(value = "status", defaultValue = "0") int status) {
+                          @RequestParam(value = "status", defaultValue = "0") String status) {
         QuestionCustom questionCustom = new QuestionCustom();
-        questionCustom.setArticleStatus(status);
+        if (status == null || "null".equals(status)) {
+            status = "0";
+        }
+        questionCustom.setArticleStatus(new Integer(status));
         questionCustom.setArticlePost(PostType.POST_TYPE_POST.getValue());
         if (title != null && !"".equals(title)) {
             questionCustom.setArticleTitle("%" + title + "%");

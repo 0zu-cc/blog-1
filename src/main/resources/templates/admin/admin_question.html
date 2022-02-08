@@ -62,12 +62,14 @@
                         <tr>
                             <td>面试题标题</td>
                             <td>所在分类</td>
+                            <td>所在内部子分类</td>
                             <td>标签</td>
                             <td>创建时间</td>
                             <td>操作</td>
                         </tr>
                         <tr th:each="article,iterStat : ${info.list}">
                             <td th:text="${article.articleTitle}" class="mt-auto"></td>
+                            <td th:text="${#strings.abbreviate(article.categorysName,20)}"></td>
                             <td th:text="${#strings.abbreviate(article.categorysName,20)}"></td>
                             <td th:text="${#strings.abbreviate(article.tagsName,20)}"></td>
                             <td

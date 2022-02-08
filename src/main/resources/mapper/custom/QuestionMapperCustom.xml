@@ -31,20 +31,19 @@
             resultType="com.yltrcc.blog.model.domain.QuestionCustom"
             parameterType="com.yltrcc.blog.model.domain.QuestionCustom">
         SELECT
-        ma.*,
-        GROUP_CONCAT(distinct mc.category_name ) AS categorysName,
-        GROUP_CONCAT(distinct mc.category_url ) AS categorysUrl,
+        qbd.*,
+        qbc.category_name  AS categorysName,
+        qbc.category_url AS categorysUrl,
         GROUP_CONCAT(distinct mt.tag_name ) AS tagsName,
         GROUP_CONCAT(distinct mt.tag_url ) AS tagsUrl
         FROM
-        qb_details ma
-        LEFT JOIN blog_article_category mac ON ma.id = mac.article_id
-        LEFT JOIN blog_category mc ON mc.category_id = mac.category_id
-        LEFT JOIN blog_article_tag mat ON ma.id = mat.article_id
+        qb_details qbd
+        LEFT JOIN qb_category qbc ON qbd.category_id = qbc.category_id
+        LEFT JOIN blog_article_tag mat ON qbd.id = mat.article_id
         LEFT JOIN blog_tag mt ON mt.tag_id = mat.tag_id
         <include refid="whereQuestionCustom"></include>
         GROUP BY
-        ma.id ORDER BY article_updatetime DESC,article_newstime DESC
+        qbd.id ORDER BY article_updatetime DESC,article_newstime DESC
     </select>
     <select id="findAllQuestion"
             resultType="com.yltrcc.blog.model.domain.QuestionCustom">

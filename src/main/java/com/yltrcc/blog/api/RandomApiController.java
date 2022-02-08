@@ -21,7 +21,7 @@ import java.util.Random;
  */
 @RestController
 @RequestMapping(value = "/api/random")
-public class RandomController {
+public class RandomApiController {
 
     /**
      * 上一个随机数，初始值-1
