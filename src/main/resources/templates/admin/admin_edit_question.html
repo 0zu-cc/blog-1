@@ -70,9 +70,8 @@
                     <div class="form-group row">
                         <label class="control-label col-md-3">文章分类:</label>
                         <div class="col-md-9">
-                            <select name="categorys" class="form-control" id="categorySelect"
-                                    multiple="">
-                                <optgroup label="点击选择，可多选">
+                            <select name="category" class="form-control" id="categorySelect" th:value="${questionCustom.categoryId}">
+                                <optgroup label="点击选择">
                                     <option th:each="category :${categorys}" th:value="${category.categoryId}"
                                             th:text="${category.categoryName}"></option>
                                 </optgroup>
@@ -214,7 +213,7 @@
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $('#categorySelect').val(data.categorysIds).trigger('change');
+                //$('#categorySelect').val(data.categorysIds).trigger('change');
                 $('#tagSelect').val(data.tagsIds).trigger('change');
             }
         })

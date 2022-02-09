@@ -13,10 +13,7 @@ import com.yltrcc.blog.model.dto.LogConstant;
 import com.yltrcc.blog.model.enums.ArticleStatus;
 import com.yltrcc.blog.model.enums.BlogEnums;
 import com.yltrcc.blog.model.enums.PostType;
-import com.yltrcc.blog.service.ArticleService;
-import com.yltrcc.blog.service.CategoryService;
-import com.yltrcc.blog.service.QuestionService;
-import com.yltrcc.blog.service.TagService;
+import com.yltrcc.blog.service.*;
 import com.yltrcc.blog.util.BlogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,6 +40,8 @@ public class QuestionController extends BaseController {
 
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private QuestionCategoryService questionCategoryService;
     @Autowired
     private TagService tagService;
     @Autowired
@@ -93,86 +92,88 @@ public class QuestionController extends BaseController {
     /**
      * 保存文章
      *
-     * @param article   文章
+     * @param question   面试题
      * @param tags      标签
-     * @param categorys 分类
      * @return
      */
     @PostMapping(value = "/new/save")
     @ResponseBody
-    public JsonResult save(Question article, Long[] tags, Long[] categorys, HttpServletRequest request) {
+    public JsonResult save(Question question, Long[] tags, Long category, HttpServletRequest request) {
         try {
-            if (StrUtil.isEmpty(article.getArticleTitle())) {
+            if (StrUtil.isEmpty(question.getArticleTitle())) {
                 return new JsonResult(false, "标题不能为空");
             }
-            if (article.getId() == null) {
+            if (category != null) {
+                question.setCategoryId(category);
+            }
+            if (question.getId() == null) {
                 // 判断文章链接是否重复
-                if (!StrUtil.isEmpty(article.getArticleUrl())) {
-                    if (article.getArticleUrl().length() > 50) {
+                if (!StrUtil.isEmpty(question.getArticleUrl())) {
+                    if (question.getArticleUrl().length() > 50) {
                         return new JsonResult(false, "路径不能大于50");
                     }
                     // 查询url是否重复
-                    int repeat = articleService.findRepeatByUrl(article.getArticleUrl());
+                    int repeat = articleService.findRepeatByUrl(question.getArticleUrl());
                     if (repeat != 0) {
                         return new JsonResult(false, "路径已存在");
                     }
                 }
                 User user = (User) request.getSession().getAttribute(BlogConst.USER_SESSION_KEY);
-                article.setUserId(user.getUserId());
-                article.setArticleNewstime(DateUtil.date());
-                article.setArticleUpdatetime(DateUtil.date());
+                question.setUserId(user.getUserId());
+                question.setArticleNewstime(DateUtil.date());
+                question.setArticleUpdatetime(DateUtil.date());
                 // 如果自定义链接为空则按时间戳生成链接
-                if (StrUtil.isEmpty(article.getArticleUrl())) {
-                    article.setArticleUrl(String.valueOf(System.currentTimeMillis() / 1000));
+                if (StrUtil.isEmpty(question.getArticleUrl())) {
+                    question.setArticleUrl(String.valueOf(System.currentTimeMillis() / 1000));
                 }
                 // 如果没有选择略缩图则随机一张图
-                if (StrUtil.isEmpty(article.getArticleThumbnail())) {
-                    article.setArticleThumbnail("/static/img/rand/" + RandomUtil.randomInt(1, 19) + ".jpg");
+                if (StrUtil.isEmpty(question.getArticleThumbnail())) {
+                    question.setArticleThumbnail("/static/img/rand/" + RandomUtil.randomInt(1, 19) + ".jpg");
                 }
                 // 判断摘要是否为空
-                if (StrUtil.isEmpty(article.getArticleSummary())) {
+                if (StrUtil.isEmpty(question.getArticleSummary())) {
                     // 如果摘要为空则取前五十字为摘要
                     int post_summary = 50;
                     if (StrUtil.isNotEmpty(BlogConst.OPTIONS.get("post_summary"))) {
                         post_summary = Integer.parseInt(BlogConst.OPTIONS.get("post_summary"));
                     }
                     // 清理html标签和空白字符
-                    String summaryText = StrUtil.cleanBlank(HtmlUtil.cleanHtmlTag(article.getArticleContent()));
+                    String summaryText = StrUtil.cleanBlank(HtmlUtil.cleanHtmlTag(question.getArticleContent()));
                     // 设置文章摘要
                     if (summaryText.length() > post_summary) {
-                        article.setArticleSummary(summaryText.substring(0, post_summary));
+                        question.setArticleSummary(summaryText.substring(0, post_summary));
                     } else {
-                        article.setArticleSummary(summaryText);
+                        question.setArticleSummary(summaryText);
                     }
                 }
-                questionService.save(article, tags, categorys);
+                questionService.save(question, tags);
                 // 添加日志
                 logService.save(new Log(LogConstant.PUBLISH_AN_ARTICLE, LogConstant.SUCCESS,
                         ServletUtil.getClientIP(request), DateUtil.date()));
             } else {
                 // 如果没有选择略缩图则随机一张图
-                if (StrUtil.isEmpty(article.getArticleThumbnail())) {
-                    article.setArticleThumbnail("/static/img/rand/" + RandomUtil.randomInt(1, 19) + ".jpg");
+                if (StrUtil.isEmpty(question.getArticleThumbnail())) {
+                    question.setArticleThumbnail("/static/img/rand/" + RandomUtil.randomInt(1, 19) + ".jpg");
                 }
                 // 判断摘要是否为空
-                if (StrUtil.isEmpty(article.getArticleSummary())) {
+                if (StrUtil.isEmpty(question.getArticleSummary())) {
                     // 如果摘要为空则取前五十字为摘要
                     int post_summary = 50;
                     if (StrUtil.isNotEmpty(BlogConst.OPTIONS.get("post_summary"))) {
                         post_summary = Integer.parseInt(BlogConst.OPTIONS.get("post_summary"));
                     }
                     // 清理html标签和空白字符
-                    String summaryText = StrUtil.cleanBlank(HtmlUtil.cleanHtmlTag(article.getArticleContent()));
+                    String summaryText = StrUtil.cleanBlank(HtmlUtil.cleanHtmlTag(question.getArticleContent()));
                     // 设置文章摘要
                     if (summaryText.length() > post_summary) {
-                        article.setArticleSummary(summaryText.substring(0, post_summary));
+                        question.setArticleSummary(summaryText.substring(0, post_summary));
                     } else {
-                        article.setArticleSummary(summaryText);
+                        question.setArticleSummary(summaryText);
                     }
                 }
                 // 文章最后修改时间
-                article.setArticleUpdatetime(DateUtil.date());
-                questionService.update(article, tags, categorys);
+                question.setArticleUpdatetime(DateUtil.date());
+                questionService.update(question, tags);
                 // 添加日志
                 logService.save(new Log(LogConstant.UPDATE_AN_ARTICLE, LogConstant.SUCCESS,
                         ServletUtil.getClientIP(request), DateUtil.date()));
@@ -275,7 +276,7 @@ public class QuestionController extends BaseController {
     @GetMapping(value = "/new")
     public String newArticle(Model model) {
         try {
-            List<Category> categorys = categoryService.findCategory();
+            List<QuestionCategory> categorys =  questionCategoryService.findCategory();
             List<Tag> tags = tagService.findTags();
             model.addAttribute("categorys", categorys);
             model.addAttribute("tags", tags);
@@ -295,7 +296,7 @@ public class QuestionController extends BaseController {
     public String editArticle(Model model, @RequestParam(value = "article_id") Integer article_id) {
         try {
             // 获取所有分类
-            List<Category> categorys = categoryService.findCategory();
+            List<QuestionCategory> categorys =  questionCategoryService.findCategory();
             // 获取所有标签
             List<Tag> tags = tagService.findTags();
             // 获取文章信息

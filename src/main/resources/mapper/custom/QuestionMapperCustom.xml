@@ -91,7 +91,8 @@
 	a.article_title,
 	article_type,
 	a.article_comment,
-	a.article_url
+	a.article_url,
+	a.category_id
 FROM
 	qb_details a
 

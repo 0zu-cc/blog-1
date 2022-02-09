@@ -304,7 +304,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yltrcc.blog.model.domain.Article">
+  <update id="updateByPrimaryKeySelective" parameterType="com.yltrcc.blog.model.domain.Question">
     update qb_details
     <set>
       <if test="userId != null">
@@ -348,6 +348,9 @@
       </if>
       <if test="articleViews != null">
         article_views = #{articleViews,jdbcType=BIGINT},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=BIGINT},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

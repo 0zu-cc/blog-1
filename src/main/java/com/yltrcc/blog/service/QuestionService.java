@@ -30,7 +30,7 @@ public interface QuestionService {
      * @param categorys
      *            分类id
      */
-    void save(Question Question, Long[] tagsName, Long[] categorys) throws Exception;
+    void save(Question Question, Long[] tagsName) throws Exception;
 
     /**
      * 不分页查询所有题库
@@ -102,7 +102,7 @@ public interface QuestionService {
      *            分类id
      * @throws Exception
      */
-    void update(Question Question, Long[] tags, Long[] categorys) throws Exception;
+    void update(Question Question, Long[] tags) throws Exception;
 
     /**
      * 归档

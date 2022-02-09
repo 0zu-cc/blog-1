@@ -41,16 +41,16 @@ public class QuestionServiceImpl implements QuestionService {
     private CategoryMapperCustom categoryMapperCustom;
 
     @Override
-    public void save(Question Question, Long[] tagsName, Long[] categorys) throws Exception {
+    public void save(Question Question, Long[] tagsName) throws Exception {
         questionMapper.insert(Question);
-        if (categorys != null) {
-           /* Arrays.asList(categorys).stream().forEach(cate -> {
+        /*if (categorys != null) {
+         *//* Arrays.asList(categorys).stream().forEach(cate -> {
                 ArticleCategory articleCategory = new ArticleCategory();
                 articleCategory.setArticleId(article.getId());
                 articleCategory.setCategoryId(cate);
                 articleCategoryMapper.insert(articleCategory);
-            });*/
-        }
+            });*//*
+        }*/
         if (tagsName != null) {
             /*Arrays.asList(tags).stream().forEach(tag -> {
                 ArticleTag articleTag = new ArticleTag();
@@ -101,7 +101,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public void update(Question question, Long[] tags, Long[] categorys) throws Exception {
+    public void update(Question question, Long[] tags) throws Exception {
         // 修改文章
         questionMapper.updateByPrimaryKeySelective(question);
     }

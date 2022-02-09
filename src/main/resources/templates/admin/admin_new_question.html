@@ -67,9 +67,8 @@
                     <div class="form-group row">
                         <label class="control-label col-md-3">面试题分类:</label>
                         <div class="col-md-9">
-                            <select name="categorys" class="form-control" id="categorys"
-                                    multiple="">
-                                <optgroup label="点击选择，可多选">
+                            <select name="categorys" class="form-control" id="categorys">
+                                <optgroup label="点击选择">
                                     <option th:each="category:${categorys}"
                                             th:value="${category.categoryId}"
                                             th:text="${category.categoryName}"></option>
