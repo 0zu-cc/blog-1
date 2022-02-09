@@ -36,6 +36,7 @@ public class QuestionCategoryServiceImpl implements QuestionCategoryService {
 		QuestionCategoryExample example = new QuestionCategoryExample();
 		QuestionCategoryExample.Criteria questionCategoryCriteria = example.createCriteria();
 		questionCategoryCriteria.andIsFinalEqualTo(1);
+		example.setOrderByClause(" concat(upper_category_id,category_id) asc");
 		return questionCategoryMapper.selectByExample(example);
 	}
 
