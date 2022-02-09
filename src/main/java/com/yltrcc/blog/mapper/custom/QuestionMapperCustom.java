@@ -26,6 +26,8 @@ public interface QuestionMapperCustom {
 
 	List<QuestionCustom> findPageQuestion(QuestionCustom questionsCustom);
 
+	List<Question> findByCategory(Question questions);
+
 	int findRepeatByUrl(@Param(value = "questionsUrl") String questionsUrl);
 
 	QuestionCustom findByQuestionsUrl(@Param(value = "questionsUrl") String questionsUrl);

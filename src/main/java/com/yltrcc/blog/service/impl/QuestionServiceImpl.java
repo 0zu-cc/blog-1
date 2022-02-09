@@ -12,6 +12,7 @@ import com.yltrcc.blog.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -118,6 +119,16 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public QuestionCustom findByQuestionsUrl(String QuestionsUrl) {
         return questionMapperCustom.findByQuestionsUrl(QuestionsUrl);
+    }
+    @Override
+    public List<Question> findByCategory(Long categoryId) {
+        Question question = new Question();
+        question.setCategoryId(categoryId);
+        List<Question> lists = questionMapperCustom.findByCategory(question);
+        if (lists == null) {
+            return new ArrayList<>();
+        }
+        return lists;
     }
 
     @Override

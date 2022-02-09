@@ -3,6 +3,7 @@ package com.yltrcc.blog.api;
 import com.yltrcc.blog.api.entity.ApiResponse;
 import com.yltrcc.blog.model.domain.Question;
 import com.yltrcc.blog.model.domain.QuestionCategory;
+import com.yltrcc.blog.model.domain.QuestionCustom;
 import com.yltrcc.blog.service.QuestionCategoryService;
 import com.yltrcc.blog.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,18 @@ public class QuestionApiController {
 
         List<QuestionCategory> data =  questionCategoryService.findCategory();
         ApiResponse<QuestionCategory> response = new ApiResponse<>(data);
+        response.setStatus(200);
+        response.setCode(200);
+        response.setMessage("获取成功！！！");
+
+        return response;
+    }
+
+    @GetMapping("/queryByCategory")
+    public ApiResponse<Question> queryByCategory(@RequestParam("categoryId") Long categoryId) {
+
+        List<Question> data = questionService.findByCategory(categoryId);
+        ApiResponse<Question> response = new ApiResponse<>(data);
         response.setStatus(200);
         response.setCode(200);
         response.setMessage("获取成功！！！");

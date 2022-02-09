@@ -129,6 +129,14 @@ public interface QuestionService {
     QuestionCustom findByQuestionsUrl(String QuestionsUrl);
 
     /**
+     * 题库分类查询
+     *
+     * @param categoryId
+     * @return 题库
+     */
+    List<Question> findByCategory(Long categoryId);
+
+    /**
      * 分页查询分类下的所有题库
      *
      * @param page

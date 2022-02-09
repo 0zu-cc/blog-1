@@ -45,6 +45,21 @@
         GROUP BY
         qbd.id ORDER BY article_updatetime DESC,article_newstime DESC
     </select>
+    <select id="findByCategory"
+            resultType="com.yltrcc.blog.model.domain.Question"
+            parameterType="com.yltrcc.blog.model.domain.Question">
+        SELECT
+        qbd.*
+        FROM
+        qb_details qbd
+        <where>1=1
+            <if test="categoryId != null">
+                and qbd.category_id=#{categoryId}
+            </if>
+
+        </where>
+        ORDER BY qbd.id DESC
+    </select>
     <select id="findAllQuestion"
             resultType="com.yltrcc.blog.model.domain.QuestionCustom">
         SELECT * FROM blog_Question a
