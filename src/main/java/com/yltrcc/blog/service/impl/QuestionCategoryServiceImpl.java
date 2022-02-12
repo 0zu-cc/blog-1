@@ -32,10 +32,16 @@ public class QuestionCategoryServiceImpl implements QuestionCategoryService {
 
 	@Override
 	//@Cacheable(value = CATEGORYS_CACHE_NAME, key = CATEGORYS_CACHE_KEY)
-	public List<QuestionCategory> findCategory() {
+	public List<QuestionCategory> findCategory(Boolean isTop, String CategoryId) {
 		QuestionCategoryExample example = new QuestionCategoryExample();
 		QuestionCategoryExample.Criteria questionCategoryCriteria = example.createCriteria();
-		questionCategoryCriteria.andIsFinalEqualTo(1);
+		//questionCategoryCriteria.andIsFinalEqualTo(1);
+		if (isTop != null) {
+			questionCategoryCriteria.andIsTopEqualTo(1);
+		}
+		if (CategoryId != null) {
+			questionCategoryCriteria.andCategoryEqualTo(CategoryId);
+		}
 		example.setOrderByClause(" concat(upper_category_id,category_id) asc");
 		return questionCategoryMapper.selectByExample(example);
 	}

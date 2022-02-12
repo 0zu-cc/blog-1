@@ -276,7 +276,7 @@ public class QuestionController extends BaseController {
     @GetMapping(value = "/new")
     public String newArticle(Model model) {
         try {
-            List<QuestionCategory> categorys =  questionCategoryService.findCategory();
+            List<QuestionCategory> categorys =  questionCategoryService.findCategory(null, null);
             List<Tag> tags = tagService.findTags();
             model.addAttribute("categorys", categorys);
             model.addAttribute("tags", tags);
@@ -296,7 +296,7 @@ public class QuestionController extends BaseController {
     public String editArticle(Model model, @RequestParam(value = "article_id") Integer article_id) {
         try {
             // 获取所有分类
-            List<QuestionCategory> categorys =  questionCategoryService.findCategory();
+            List<QuestionCategory> categorys =  questionCategoryService.findCategory(null, null);
             // 获取所有标签
             List<Tag> tags = tagService.findTags();
             // 获取文章信息

@@ -16,7 +16,7 @@ public interface QuestionCategoryService {
 	 *
 	 * @return
 	 */
-	List<QuestionCategory> findCategory();
+	List<QuestionCategory> findCategory(Boolean isTop, String CategoryId);
 
 	/**
 	 * 根据id查询

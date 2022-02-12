@@ -1,5 +1,6 @@
 package com.yltrcc.blog.api;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.yltrcc.blog.api.entity.ApiResponse;
 import com.yltrcc.blog.model.domain.Question;
 import com.yltrcc.blog.model.domain.QuestionCategory;
@@ -7,10 +8,7 @@ import com.yltrcc.blog.model.domain.QuestionCustom;
 import com.yltrcc.blog.service.QuestionCategoryService;
 import com.yltrcc.blog.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,9 +59,9 @@ public class QuestionApiController {
     }
 
     @GetMapping("/getcategory")
-    public ApiResponse<QuestionCategory> getcategory() {
+    public ApiResponse<QuestionCategory> getcategory(Boolean isTop, String categoryId) {
 
-        List<QuestionCategory> data =  questionCategoryService.findCategory();
+        List<QuestionCategory> data =  questionCategoryService.findCategory(isTop, categoryId);
         ApiResponse<QuestionCategory> response = new ApiResponse<>(data);
         response.setStatus(200);
         response.setCode(200);

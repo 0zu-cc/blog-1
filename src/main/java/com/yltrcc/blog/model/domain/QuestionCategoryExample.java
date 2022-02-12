@@ -123,6 +123,14 @@ public class QuestionCategoryExample {
 			addCriterion("is_final =", value, "isFinal");
 			return (Criteria) this;
 		}
+		public Criteria andIsTopEqualTo(Integer value) {
+			addCriterion("is_top =", value, "isTop");
+			return (Criteria) this;
+		}
+		public Criteria andCategoryEqualTo(String value) {
+			addCriterion("upper_category_id =", value, "upperCategoryId");
+			return (Criteria) this;
+		}
 
 		public Criteria andArticleIdNotEqualTo(Integer value) {
 			addCriterion("article_id <>", value, "articleId");
