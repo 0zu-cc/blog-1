@@ -78,6 +78,7 @@
                             </select>
                         </div>
                     </div>
+                    <input type="hidden" id="categoryId" th:value="${questionCustom.categoryId}">
                     <div class="form-group row">
                         <label class="control-label col-md-3">文章标签:</label>
                         <div class="col-md-9">
@@ -202,8 +203,10 @@
             });
         });
 
-        $('#categorySelect').select2();
+        var categorySelect = $('#categorySelect');
+        categorySelect.select2();
         $('#tagSelect').select2();
+        categorySelect.val($('#categoryId').val()).trigger('change');
         //设置默认选择
         $.ajax({
             url: "/admin/article/ids",
@@ -213,7 +216,6 @@
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                //$('#categorySelect').val(data.categorysIds).trigger('change');
                 $('#tagSelect').val(data.tagsIds).trigger('change');
             }
         })

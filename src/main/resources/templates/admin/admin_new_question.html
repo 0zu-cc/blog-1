@@ -67,7 +67,7 @@
                     <div class="form-group row">
                         <label class="control-label col-md-3">面试题分类:</label>
                         <div class="col-md-9">
-                            <select name="categorys" class="form-control" id="categorys">
+                            <select name="category" class="form-control" id="category">
                                 <optgroup label="点击选择">
                                     <option th:each="category:${categorys}"
                                             th:value="${category.categoryId}"
@@ -79,7 +79,7 @@
                     <div class="form-group row">
                         <label class="control-label col-md-3">面试题标签:</label>
                         <div class="col-md-9">
-                            <select name="tags" class="form-control" id="tags"
+                            <select name="questionTags" class="form-control" id="questionTags"
                                     multiple="">
                                 <optgroup label="点击选择，可多选">
                                     <option th:each="tag:${tags}" th:value="${tag.tagId}"
@@ -264,8 +264,8 @@
         }
     }
 
-    $('#categorys').select2();
-    $('#tags').select2();
+    $('#category').select2();
+    $('#questionTags').select2();
 
 </script>
 </body>
