@@ -117,13 +117,13 @@
       article_content_md, article_newstime, article_status, 
       article_summary, article_thumbnail, article_title, 
       article_type, article_post, article_comment, 
-      article_updatetime, article_url, article_views
+      article_updatetime, article_url, article_views,category_id
       )
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{articleContent,jdbcType=VARCHAR}, 
       #{articleContentMd,jdbcType=VARCHAR}, #{articleNewstime,jdbcType=TIMESTAMP}, #{articleStatus,jdbcType=INTEGER}, 
       #{articleSummary,jdbcType=VARCHAR}, #{articleThumbnail,jdbcType=VARCHAR}, #{articleTitle,jdbcType=VARCHAR}, 
       #{articleType,jdbcType=INTEGER}, #{articlePost,jdbcType=VARCHAR}, #{articleComment,jdbcType=INTEGER}, 
-      #{articleUpdatetime,jdbcType=TIMESTAMP}, #{articleUrl,jdbcType=VARCHAR}, #{articleViews,jdbcType=BIGINT}
+      #{articleUpdatetime,jdbcType=TIMESTAMP}, #{articleUrl,jdbcType=VARCHAR}, #{articleViews,jdbcType=BIGINT},#{categoryId,jdbcType=BIGINT}
       )
   </insert>
 
