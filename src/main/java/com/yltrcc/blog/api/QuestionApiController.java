@@ -97,6 +97,7 @@ public class QuestionApiController {
         //搜索当前目录下的APK文件
         String appPath = "usr/yltrcc/nginx/android";
         Path path = Paths.get(appPath);
+        StaticLog.info("This is static {} log. " + Files.isDirectory(path), "INFO");
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)) {
             for (Path entry : stream) {
                 if (entry.toFile().isFile()) {
