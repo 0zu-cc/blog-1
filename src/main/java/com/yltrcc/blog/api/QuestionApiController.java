@@ -95,7 +95,7 @@ public class QuestionApiController {
 
         StringBuilder sb = new StringBuilder();
         //搜索当前目录下的APK文件
-        String appPath = "/usr/yltrcc/nginx/android/";
+        String appPath = "/usr/yltrcc/nginx/android/recite-2.apk";
         Path path = Paths.get(appPath);
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)) {
             for (Path entry : stream) {
