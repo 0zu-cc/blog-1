@@ -10,6 +10,7 @@ import com.yltrcc.blog.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class QuestionApiController {
     @GetMapping("/getcategory")
     public ApiResponse<QuestionCategory> getcategory(Boolean isTop, String categoryId) {
 
-        List<QuestionCategory> data =  questionCategoryService.findCategory(isTop, categoryId);
+        List<QuestionCategory> data = questionCategoryService.findCategory(isTop, categoryId);
         ApiResponse<QuestionCategory> response = new ApiResponse<>(data);
         response.setStatus(200);
         response.setCode(200);
@@ -81,4 +82,32 @@ public class QuestionApiController {
 
         return response;
     }
+
+    @GetMapping("/getAppVersionCode")
+    public ApiResponse<String> getAppVersionCode() {
+
+        StringBuilder sb = new StringBuilder();
+        //搜索当前目录下的APK文件
+        String appPath = "/usr/yltrcc/nginx/android";
+
+        File file = new File(appPath);
+        File[] fs = file.listFiles();
+        if (fs != null) {
+            for (File f : fs) {
+                if (!f.isDirectory()) {
+                    sb.append(f.getName());
+                }
+            }
+        }
+
+        List<String> data = new ArrayList<>();
+        data.add(sb.toString());
+        ApiResponse<String> response = new ApiResponse<>(data);
+        response.setStatus(200);
+        response.setCode(200);
+        response.setMessage("获取成功！！！");
+
+        return response;
+    }
+
 }
