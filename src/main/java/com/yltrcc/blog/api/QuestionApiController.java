@@ -13,6 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,16 +96,15 @@ public class QuestionApiController {
         StringBuilder sb = new StringBuilder();
         //搜索当前目录下的APK文件
         String appPath = "/usr/yltrcc/nginx/android/";
-
-        File file = new File(appPath);
-        File[] fs = file.listFiles();
-        if (fs != null) {
-            for (File f : fs) {
-                if (!f.isDirectory()) {
-                    sb.append(f.getName());
-                    StaticLog.info("This is static {} log." + f.getName(), "INFO");
+        Path path = Paths.get(appPath);
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)) {
+            for (Path entry : stream) {
+                if (entry.toFile().isFile()) {
+                    sb.append(entry.toFile().getName());
                 }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         List<String> data = new ArrayList<>();
