@@ -1,5 +1,7 @@
 package com.yltrcc.blog.api;
 
+import cn.hutool.log.LogFactory;
+import cn.hutool.log.StaticLog;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.yltrcc.blog.api.entity.ApiResponse;
 import com.yltrcc.blog.model.domain.Question;
@@ -88,7 +90,7 @@ public class QuestionApiController {
 
         StringBuilder sb = new StringBuilder();
         //搜索当前目录下的APK文件
-        String appPath = "/usr/yltrcc/nginx/android";
+        String appPath = "/usr/yltrcc/nginx/android/";
 
         File file = new File(appPath);
         File[] fs = file.listFiles();
@@ -96,6 +98,7 @@ public class QuestionApiController {
             for (File f : fs) {
                 if (!f.isDirectory()) {
                     sb.append(f.getName());
+                    StaticLog.info("This is static {} log." + f.getName(), "INFO");
                 }
             }
         }
