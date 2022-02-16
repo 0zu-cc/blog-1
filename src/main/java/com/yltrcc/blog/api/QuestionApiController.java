@@ -91,7 +91,7 @@ public class QuestionApiController {
     }
 
     @GetMapping("/getAppVersionCode")
-    public ApiResponse<String> getAppVersionCode() {
+    public ApiResponse<String> getAppVersionCode() throws IOException {
 
         StringBuilder sb = new StringBuilder();
         //搜索当前目录下的APK文件
@@ -103,8 +103,6 @@ public class QuestionApiController {
                     sb.append(entry.toFile().getName());
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
         List<String> data = new ArrayList<>();
