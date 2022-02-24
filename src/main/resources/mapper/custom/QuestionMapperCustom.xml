@@ -58,7 +58,7 @@
             </if>
 
         </where>
-        ORDER BY qbd.id DESC
+        ORDER BY qbd.sort
     </select>
     <select id="findAllQuestion"
             resultType="com.yltrcc.blog.model.domain.QuestionCustom">

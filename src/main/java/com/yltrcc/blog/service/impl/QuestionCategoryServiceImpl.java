@@ -42,7 +42,7 @@ public class QuestionCategoryServiceImpl implements QuestionCategoryService {
 		if (CategoryId != null) {
 			questionCategoryCriteria.andCategoryEqualTo(CategoryId);
 		}
-		example.setOrderByClause(" concat(upper_category_id,category_id) asc");
+		example.setOrderByClause(" sort");
 		return questionCategoryMapper.selectByExample(example);
 	}
 

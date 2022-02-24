@@ -94,7 +94,7 @@ public class QuestionApiController {
     public ApiResponse<String> getAppVersionCode() throws IOException {
 
         StringBuilder sb = new StringBuilder();
-        //搜索当前目录下的APK文件
+        //搜索当前目录下的APK文件 算了还是用数据库来做吧
         String appPath = "usr/yltrcc/nginx/android";
         Path path = Paths.get(appPath);
         StaticLog.info("This is static {} log. " + Files.isDirectory(path), "INFO");
